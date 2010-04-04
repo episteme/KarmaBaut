@@ -9,7 +9,7 @@ import time
 def oldestKey(dict):
     lowest = dict.keys()[0]
     for key in dict.keys()[1:]:
-        if dict[key] < lowest:
+        if dict[key] < dict[lowest]:
             lowest = key
     return lowest
 
@@ -95,11 +95,11 @@ while True:
         identd = dataIdt(data)
         if dest == '#bigcrew':
             dkey = identd + ':' + message
-            currenttime = int(time.time())
+            currenttime = time.time()
             dInfo[dkey] = currenttime
             if len(dInfo) > 9:
                 AssignPoints = countPoints(dInfo, oldestKey(dInfo))
-                if AssignPoints in dPoints:
+                if AssignPoints[0] in dPoints:
                     # award (number of times pasted)^2 points
                     dPoints[AssignPoints[0]] += (AssignPoints[1] ** 2)
                 else:
